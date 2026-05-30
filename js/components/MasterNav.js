@@ -1,4 +1,5 @@
 import { MasterComponent } from '../core.js';
+import { MasterButton } from './MasterButton.js';
 
 export class MasterNav extends MasterComponent {
   onMount(el) {
@@ -25,7 +26,7 @@ export class MasterNav extends MasterComponent {
             this.create('a', { href: link.href, className: 'nav-link' }, link.text)
           )
         ),
-        this.create('button', { className: 'pk-btn pk-btn-primary pk-btn-sm' }, 'Get Started')
+        new MasterButton({ variant: 'primary', size: 'sm', text: 'Get Started' })
       )
     );
   }

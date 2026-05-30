@@ -1,4 +1,5 @@
 import { MasterComponent } from '../core.js';
+import { MasterButton } from './MasterButton.js';
 
 export class MasterHero extends MasterComponent {
   render() {
@@ -10,15 +11,17 @@ export class MasterHero extends MasterComponent {
         this.create('h1', { className: 'gradient-text' }, title),
         this.create('p', {}, subtitle),
         this.create('div', { className: 'hero-actions' },
-          this.create('button', { 
-            className: 'pk-btn pk-btn-primary', 
-            style: { marginRight: '1rem' },
-            onclick: primaryAction.onClick 
-          }, primaryAction.text),
-          this.create('button', { 
-            className: 'pk-btn pk-btn-outline',
-            onclick: secondaryAction.onClick 
-          }, secondaryAction.text)
+          new MasterButton({ 
+            variant: 'primary', 
+            text: primaryAction.text, 
+            onClick: primaryAction.onClick,
+            style: { marginRight: '1rem' }
+          }),
+          new MasterButton({ 
+            variant: 'outline', 
+            text: secondaryAction.text, 
+            onClick: secondaryAction.onClick 
+          })
         )
       )
     );
