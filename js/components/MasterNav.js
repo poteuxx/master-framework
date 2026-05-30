@@ -26,7 +26,12 @@ export class MasterNav extends MasterComponent {
             this.create('a', { href: link.href, className: 'nav-link' }, link.text)
           )
         ),
-        new MasterButton({ variant: 'primary', size: 'sm', text: 'Get Started' })
+        new MasterButton({ 
+          variant: 'primary', 
+          size: 'sm', 
+          text: 'Get Started',
+          onClick: () => window.location.hash = '#docs'
+        })
       )
     );
   }

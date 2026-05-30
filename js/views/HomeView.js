@@ -8,7 +8,7 @@ export class HomeView extends MasterComponent {
       new MasterHero({
         title: 'The Ultimate Web Foundation',
         subtitle: 'Build ultra-fast, premium web applications with a zero-dependency framework designed for performance and aesthetics.',
-        primaryAction: { text: 'Explore Features', onClick: () => window.location.hash = '#features' },
+        primaryAction: { text: 'Quick Start', onClick: () => window.location.hash = '#docs' },
         secondaryAction: { text: 'View GitHub', onClick: () => window.open('https://github.com/poteuxx/master-framework', '_blank') }
       }),
       this.create('section', { className: 'section container' },
