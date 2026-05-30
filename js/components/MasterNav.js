@@ -17,7 +17,7 @@ export class MasterNav extends MasterComponent {
 
     return this.create('nav', { className: 'navbar' },
       this.create('div', { className: 'container nav-content' },
-        this.create('div', { className: 'logo' },
+        this.create('a', { href: '#', className: 'logo' },
           this.create('img', { src: './assets/logo.png', alt: 'Logo', style: { height: '32px', marginRight: '10px' } }),
           this.create('span', {}, logo), 'FRAMEWORK'
         ),

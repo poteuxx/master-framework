@@ -3,6 +3,41 @@
  * A zero-dependency, ultra-performance reactive UI library.
  */
 
+export class MasterRouter {
+  constructor(routes, container) {
+    this.routes = routes;
+    this.container = typeof container === 'string' ? document.querySelector(container) : container;
+    
+    window.addEventListener('popstate', () => this.handleRoute());
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (link && link.getAttribute('href').startsWith('#')) {
+        e.preventDefault();
+        const path = link.getAttribute('href');
+        this.navigate(path);
+      }
+    });
+
+    this.handleRoute();
+  }
+
+  navigate(path) {
+    if (path === window.location.hash) return;
+    window.history.pushState(null, '', path);
+    this.handleRoute();
+  }
+
+  handleRoute() {
+    const hash = window.location.hash || '#';
+    const route = this.routes[hash] || this.routes['#'];
+    
+    if (route) {
+      Master.render(new route(), this.container);
+      window.scrollTo(0, 0);
+    }
+  }
+}
+
 export class Master {
   static createSignal(initialValue) {
     let value = initialValue;
@@ -30,7 +65,6 @@ export class Master {
     const node = component.render();
     parent.appendChild(node);
     
-    // Trigger onMount
     if (component.onMount) component.onMount(node);
   }
 }

@@ -1,9 +1,20 @@
-import { Master, MasterComponent } from './core.js';
+import { Master, MasterComponent, MasterRouter } from './core.js';
 import { MasterNav } from './components/MasterNav.js';
-import { MasterHero } from './components/MasterHero.js';
-import { MasterCard } from './components/MasterCard.js';
+import { HomeView } from './views/HomeView.js';
+import { FeaturesView } from './views/FeaturesView.js';
+import { ComponentsView } from './views/ComponentsView.js';
+import { DocsView } from './views/DocsView.js';
 
 class App extends MasterComponent {
+  onMount() {
+    new MasterRouter({
+      '#': HomeView,
+      '#features': FeaturesView,
+      '#components': ComponentsView,
+      '#docs': DocsView
+    }, '#main-content');
+  }
+
   render() {
     return this.create('div', { className: 'app-container' },
       new MasterNav({
@@ -14,34 +25,7 @@ class App extends MasterComponent {
           { text: 'Docs', href: '#docs' }
         ]
       }),
-      this.create('main', {},
-        new MasterHero({
-          title: 'The Ultimate Web Foundation',
-          subtitle: 'Build ultra-fast, premium web applications with a zero-dependency framework designed for performance and aesthetics.',
-          primaryAction: { text: 'Quick Start', onClick: () => alert('Starting...') },
-          secondaryAction: { text: 'View GitHub', onClick: () => window.open('https://github.com/poteuxx/master-framework', '_blank') }
-        }),
-        this.create('section', { id: 'features', className: 'section container' },
-          this.create('h2', { className: 'glow-text section-title' }, 'Core Philosophy'),
-          this.create('div', { className: 'grid-3' },
-            new MasterCard({
-              title: 'Zero Dependency',
-              description: 'No node_modules, no build step, no bloat. Just clean, optimized vanilla JavaScript and CSS.',
-              icon: '🚀'
-            }),
-            new MasterCard({
-              title: 'Premium Design',
-              description: 'A built-in design system focused on high-end glassmorphism, fluid typography, and micro-animations.',
-              icon: '💎'
-            }),
-            new MasterCard({
-              title: 'Ultra Performance',
-              description: 'Engineered for 100/100 Lighthouse scores. Minimal footprint, maximum speed.',
-              icon: '⚡'
-            })
-          )
-        )
-      ),
+      this.create('div', { id: 'main-content' }),
       this.create('footer', { className: 'footer section' },
         this.create('div', { className: 'container' },
           this.create('p', {}, '© 2026 Master Framework. Created with ❤️ by André.')
