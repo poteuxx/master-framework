@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Framework | Premium UI Ecosystem</title>
+    <meta name="description" content="Master Framework is a zero-dependency, high-performance vanilla JS framework for modern web applications.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/master.css">
+    
+    <!-- Favicon (Fallback) -->
+    <link rel="icon" href="https://via.placeholder.com/32/7000FF/FFFFFF?text=M">
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="module">
+        import { Master, MasterComponent } from './js/core.js';
+        
+        class App extends MasterComponent {
+            render() {
+                return this.create('div', { className: 'app-container' },
+                    this.create('nav', { className: 'navbar' },
+                        this.create('div', { className: 'container nav-content' },
+                            this.create('div', { className: 'logo' }, 
+                                this.create('span', {}, 'MASTER'), 'FRAMEWORK'
+                            ),
+                            this.create('div', { className: 'nav-links' },
+                                this.create('a', { href: '#', className: 'nav-link' }, 'Features'),
+                                this.create('a', { href: '#', className: 'nav-link' }, 'Components'),
+                                this.create('a', { href: '#', className: 'nav-link' }, 'Documentation')
+                            ),
+                            this.create('button', { className: 'pk-btn pk-btn-primary pk-btn-sm' }, 'Get Started')
+                        )
+                    ),
+                    this.create('main', {},
+                        this.create('section', { className: 'hero animate-fade-in' },
+                            this.create('div', { className: 'hero-bg' }),
+                            this.create('div', { className: 'container hero-content' },
+                                this.create('h1', { className: 'gradient-text' }, 'The Ultimate Web Foundation'),
+                                this.create('p', {}, 'Build ultra-fast, premium web applications with a zero-dependency framework designed for performance and aesthetics.'),
+                                this.create('div', { className: 'hero-actions' },
+                                    this.create('button', { className: 'pk-btn pk-btn-primary', style: { marginRight: '1rem' } }, 'Quick Start'),
+                                    this.create('button', { className: 'pk-btn pk-btn-outline' }, 'View GitHub')
+                                )
+                            )
+                        ),
+                        this.create('section', { className: 'section container' },
+                            this.create('h2', { className: 'glow-text', style: { textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' } }, 'Core Philosophy'),
+                            this.create('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' } },
+                                this.create('div', { className: 'glass', style: { padding: '2rem' } },
+                                    this.create('h3', { style: { color: 'var(--pk-accent-primary)', marginBottom: '1rem' } }, 'Zero Dependency'),
+                                    this.create('p', { style: { color: 'var(--pk-text-secondary)' } }, 'No node_modules, no build step, no bloat. Just clean, optimized vanilla JavaScript and CSS.')
+                                ),
+                                this.create('div', { className: 'glass', style: { padding: '2rem' } },
+                                    this.create('h3', { style: { color: 'var(--pk-accent-secondary)', marginBottom: '1rem' } }, 'Premium Design'),
+                                    this.create('p', { style: { color: 'var(--pk-text-secondary)' } }, 'A built-in design system focused on high-end glassmorphism, fluid typography, and micro-animations.')
+                                ),
+                                this.create('div', { className: 'glass', style: { padding: '2rem' } },
+                                    this.create('h3', { style: { color: 'var(--pk-accent-primary)', marginBottom: '1rem' } }, 'Ultra Performance'),
+                                    this.create('p', { style: { color: 'var(--pk-text-secondary)' } }, 'Engineered for 100/100 Lighthouse scores. Minimal footprint, maximum speed.')
+                                )
+                            )
+                        )
+                    )
+                );
+            }
+        }
+
+        // Initialize App
+        const app = new App();
+        Master.render(app, '#app');
+
+        // Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
